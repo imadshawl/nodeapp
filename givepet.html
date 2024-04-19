@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Have a Pet to Give Away - Login</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <a href="index.html"><img src="logo.png" alt="Adopt A Pet Logo"></a>
+        <span id="currentDateTime"></span>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1>Login to Offer a Pet for Adoption</h1>
+        <p>Please log in to offer a pet for adoption:</p>
+        
+        <!-- Login Form -->
+        <form id="loginForm" onsubmit="return login()">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <input type="submit" value="Login">
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>This website promises to protect user information and ensures correct pet owner details.</p>
+        <a href="privacy.html">Privacy Statement</a> | <a href="disclaimer.html">Disclaimer</a>
+    </footer>
+
+    <!-- JavaScript for current date time and login functionality -->
+    <!-- JavaScript for current date time and login functionality -->
+<script src="script.js"></script>
+<script>
+    function login() {
+        var username = document.getElementById('username').value.trim();
+        var password = document.getElementById('password').value.trim();
+
+        // Read credentials from the file
+        fetch('login.txt')
+            .then(response => response.text())
+            .then(data => {
+                // Split the data into lines
+                var lines = data.split('\n');
+
+                // Check each line for a match
+                var validCredentials = lines.some(line => {
+                    var [storedUsername, storedPassword] = line.trim().split(':');
+                    return username === storedUsername && password === storedPassword;
+                });
+
+                if (validCredentials) {
+                    // Redirect to form for offering a pet
+                    window.location.href = 'offerpet.html';
+                } else {
+                    // Display login failed message
+                    alert('Login failed. Please check your username and password.');
+                }
+            })
+            .catch(error => {
+                console.error('Error reading login file:', error);
+                alert('An error occurred while logging in. Please try again later.');
+            });
+
+        // Prevent default form submission
+        return false;
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Offer a Pet for Adoption</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <a href="index.html"><img src="logo.png" alt="Adopt A Pet Logo"></a>
+        <span id="currentDateTime"></span>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1>Offer a Pet for Adoption</h1>
+        <p>Fill out the form below to offer a pet for adoption:</p>
+        
+        <!-- Offer Pet Form -->
+        <form id="offerPetForm">
+            <label for="petType">Pet Type:</label>
+            <select id="petType" name="petType" required>
+                <option value="">Select</option>
+                <option value="cat">Cat</option>
+                <option value="dog">Dog</option>
+            </select>
+
+            <label for="breed">Breed:</label>
+            <input type="text" id="breed" name="breed" required>
+
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required>
+
+            <label for="petDescription">Description:</label>
+            <textarea id="petDescription" name="petDescription" rows="4" required></textarea>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>This website promises to protect user information and ensures correct pet owner details.</p>
+        <a href="privacy.html">Privacy Statement</a> | <a href="disclaimer.html">Disclaimer</a>
+    </footer>
+
+    <!-- JavaScript for form submission -->
+    <script>
+        function submitForm() {
+            var petType = document.getElementById('petType').value;
+            var breed = document.getElementById('breed').value;
+            var age = document.getElementById('age').value;
+            var description = document.getElementById('petDescription').value;
+
+            // Prepare data to save
+            var data = {
+                petType: petType,
+                breed: breed,
+                age: age,
+                description: description
+            };
+
+            console.log('Pet Type:', petType);
+            console.log('Breed:', breed);
+            console.log('Age:', age);
+            console.log('Description:', description);
+
+            // Send data to server for saving
+            fetch('/savePet', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Pet details submitted successfully!');
+                    // Redirect to a thank you page or any other page as needed
+                    
+                } else {
+                    alert('Failed to submit pet details. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Error submitting pet details:', error);
+                alert('An error occurred while submitting pet details. Please try again later.');
+            });
+
+            // Prevent default form submission
+            return false;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Logout</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <a href="index.html"><img src="logo.png" alt="Adopt A Pet"></a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="findpet.html">Find a Dog/Cat</a></li>
+                <li><a href="givepet.html">Have a pet to give away</a></li>
+                <li><a href="adoption.html">Adopt</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="logout.html">LogOut</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h2>Logout</h2>
+        <p>Are you sure you want to logout?</p>
+        <button onclick="logout()">Logout</button>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>We respect your privacy. Your information will not be sold or misused.</p>
+        <a href="privacy.html">Privacy Statement</a> | <a href="disclaimer.html">Disclaimer</a>
+    </footer>
+
+    <!-- JavaScript for logout -->
+    <script>
+        function logout() {
+            // Perform logout actions here (e.g., clear session)
+            alert("You have been logged out successfully.");
+            // Redirect to home page after logout
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+</html>
